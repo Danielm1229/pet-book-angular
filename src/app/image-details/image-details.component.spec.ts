@@ -45,7 +45,7 @@ describe("ImageDetailsComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("Cuando la imagen existe debe retornar el Json de la imagen", () => {
+  it("Cuando la imagen existe debe retornar todos los elementos en formato Json de la imagen", () => {
     expect(component.image).toEqual({
       id: 1,
       brand: "perro",

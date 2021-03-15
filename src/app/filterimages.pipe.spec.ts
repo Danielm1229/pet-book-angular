@@ -19,6 +19,7 @@ describe("FilterimagesPipe", () => {
   it("Cuando se inicie el pipe, debe crear una instancia del filtro", () => {
     expect(pipe).toBeTruthy();
   });
+  
   describe("transform", () => {
     using(
       [

@@ -22,10 +22,10 @@ describe("AppComponent", () => {
     expect(app.title).toEqual("pet-book");
   });
 
-  it("Cuando inicie la aplicación debe renderizar el compomente raíz", () => {
+  it('Cuando inicie la aplicación debe renderizar el compomente router-outlet ', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector("#root-component")).not.toBeNull();
+    expect(compiled.querySelector('router-outlet')).not.toBeNull();
   });
 });
