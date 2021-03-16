@@ -51,6 +51,12 @@ describe("ImageGalleryComponent", () => {
     });
   });
 
+  it("Cuando se cargue el componente la lista con un id diferente al id 1 debe sacar error", () => {
+    component.allImages.forEach((item) => {
+      expect(item.id).not.toEqual(2);
+    });
+  });
+
   it("Cuando se cargue el componente debe tener 3 botones con los valores All, Perro y Gato", () => {
     const buttons = fixture.nativeElement.querySelectorAll(
       "#filterButtons .btn"

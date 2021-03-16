@@ -20,15 +20,23 @@ describe('ImageService', () => {
     });
   });
 
-  describe('getImage', () => {
-    it('Debe retornar la imagen con el id que se da como parametro si existe', () => {
-      let imagene = service.getImage(2);
-      expect(imagene.brand).toEqual('perro');
+  describe('#getImage(id)', () =>  {
+    it('Deberia retornar indefinido cuando se envia indefinido ', () => {
+      let id;
+      let imagen = service.getImage(id);
+      expect(imagen).toBeUndefined();
     });
 
-    it('Debe retornar "indefinido" si se busca una imagen con un id que NO existe', () => {
-      let imagene = service.getImage(100);
-      expect(imagene).toEqual(undefined);
+    it('Deberia retornar indefinido cuando se envia como id no existente ', () => {
+      let id=20;
+      let imagen = service.getImage(id);
+      expect(imagen).toBeUndefined();
+    });
+
+    it('Deberia retornar un perro cuando se envia como id el 1 ', () => {
+      let id=1;
+      let imagen = service.getImage(id);
+      expect(imagen.brand).toEqual("perro");
     });
   });
 });
