@@ -20,6 +20,7 @@ jobs:
       - aws-s3/sync:     
           arguments: |
             --acl public-read
+          overwrite: true
           from: ~/pet_book/dist/pet-book
           to: 's3://pet-book-project-circleci'
   test:
@@ -34,7 +35,7 @@ jobs:
            command: cd serenity-project && ./gradlew test
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
-  aws-s3: circleci/aws-s3@2.0.0
+  aws-s3: circleci/aws-s3@1.0.15
 
 workflows:
   main:
