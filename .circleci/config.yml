@@ -17,6 +17,10 @@ jobs:
           name: Build Project
           command: npm run-script build
       - sonarcloud/scan
+      - run:
+          name: Run unit test
+          no_output_timeout: 30m
+          command: npm test
       - aws-s3/sync:     
           arguments: |
             --acl public-read
