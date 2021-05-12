@@ -32,7 +32,7 @@ jobs:
            command: git clone https://github.com/Danielm1229/automatization-petbook
        - run:
            name: Move to serenity and test
-           command: cd serenity-project && ./gradlew test
+           command: cd automatization-petbook && ./gradlew test
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   aws-s3: circleci/aws-s3@1.0.15
