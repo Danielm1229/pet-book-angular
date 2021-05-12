@@ -32,10 +32,10 @@ jobs:
          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
 
       # build the application image
-      - run: docker build -t company/app:$CIRCLE_BRANCH .
+      - run: docker build -t Dockerfile:dockerfile .
 
       # deploy the image
-      - run: docker push company/app:$CIRCLE_BRANCH
+      - run: docker push Dockerfile:dockerfile
   test:
      docker:
        - image: 'circleci/openjdk:8-node-browsers'
