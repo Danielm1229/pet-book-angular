@@ -43,8 +43,14 @@ jobs:
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   aws-s3: circleci/aws-s3@1.0.15
-
+  docker: circleci/docker@1.5.0
+  
 workflows:
+  build-and-publish-docker-image:
+    jobs:
+      - docker/publish:
+          image: $DOCKERHUB_USERNAME/$DOCKERHUB_PASSWORD
+          use-docker-credentials-store: true
   main:
     jobs:
       - build:
