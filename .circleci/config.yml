@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Run unit test
           no_output_timeout: 30m
-          command: npm run test --code-coverage --watch=false --browsers=HeadlessChrome
+          command: ng test --watch=false
       - sonarcloud/scan
       - aws-s3/sync:     
           arguments: |
