@@ -27,6 +27,15 @@ jobs:
           overwrite: true
           from: ~/pet_book/dist/pet-book
           to: 's3://pet-book-project-circleci'
+      - checkout
+      - run: |
+         echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+
+      # build the application image
+      - run: docker build -t company/app:$CIRCLE_BRANCH .
+
+      # deploy the image
+      - run: docker push company/app:$CIRCLE_BRANCH
   test:
      docker:
        - image: 'circleci/openjdk:8-node-browsers'
@@ -40,14 +49,7 @@ jobs:
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   aws-s3: circleci/aws-s3@1.0.15
-  docker: circleci/docker@1.5.0
-  
 workflows:
-  build-and-publish-docker-image:
-    jobs:
-      - docker/publish:
-          image: $DOCKER_LOGIN/$DOCKER_PASSWORD
-          use-docker-credentials-store: true
   main:
     jobs:
       - build:
