@@ -30,6 +30,14 @@ jobs:
           overwrite: true
           from: ~/pet_book/dist/pet-book
           to: 's3://pet-book-project-circleci'
+      - setup_remote_docker:
+          version: 19.03.13
+          docker_layer_caching: true
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t Dockerfile:dockerfile .
+          echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+          docker push Dockerfile:dockerfile
   test:
      docker:
        - image: 'circleci/openjdk:8-node-browsers'
@@ -43,7 +51,6 @@ jobs:
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   aws-s3: circleci/aws-s3@1.0.15
-  docker: circleci/docker@1.5.0
 
 workflows:
   main:
