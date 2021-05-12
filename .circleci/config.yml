@@ -4,6 +4,9 @@ jobs:
   build:
     docker:
       - image: 'circleci/openjdk:8-node-browsers'
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
     working_directory: ~/pet_book
     steps:
       - checkout
@@ -40,6 +43,7 @@ jobs:
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   aws-s3: circleci/aws-s3@1.0.15
+  docker: circleci/docker@1.5.0
 
 workflows:
   main:
