@@ -32,10 +32,10 @@ jobs:
          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
 
       # build the application image
-      - run: docker build -t https://github.com/Danielm1229/pet-book-angular:dockerfile .
+      - run: docker build -t pet-book-ci:dockerfile .
 
       # deploy the image
-      - run: docker push https://github.com/Danielm1229/pet-book-angular:dockerfile
+      - run: docker push pet-book-ci:dockerfile
   test:
      docker:
        - image: 'circleci/openjdk:8-node-browsers'
