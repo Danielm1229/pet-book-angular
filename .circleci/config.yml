@@ -4,9 +4,6 @@ jobs:
   build:
     docker:
       - image: 'circleci/openjdk:8-node-browsers'
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
     working_directory: ~/pet_book
     steps:
       - checkout
@@ -49,7 +46,7 @@ workflows:
   build-and-publish-docker-image:
     jobs:
       - docker/publish:
-          image: $DOCKERHUB_USERNAME/$DOCKERHUB_PASSWORD
+          image: $DOCKER_LOGIN/$DOCKER_PASSWORD
           use-docker-credentials-store: true
   main:
     jobs:
