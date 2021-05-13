@@ -30,11 +30,7 @@ jobs:
       - checkout
       - run: |
          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-
-      # build the application image
       - run: docker build -t danielmunozo/pet-book-ci:dockerfile .
-
-      # deploy the image
       - run: docker push danielmunozo/pet-book-ci:dockerfile
   test:
      docker:
