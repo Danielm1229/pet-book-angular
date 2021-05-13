@@ -31,8 +31,8 @@ jobs:
           to: 's3://pet-book-project-circleci'
       - run: |
          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-      - run: docker build -t danielmunozo/pet-book-ci:dockerfile .
-      - run: docker push danielmunozo/pet-book-ci:dockerfile
+      - run: docker build -t $DOCKER_USER/$REPO:$TAG .
+      - run: docker push $DOCKER_USER/$REPO:$TAG
   test:
      docker:
        - image: 'circleci/openjdk:8-node-browsers'
