@@ -22,6 +22,7 @@ jobs:
           name: Run unit test
           command: npm run test-ci
       - sonarcloud/scan
+      - sonarCloud/check_quality_gate
       - aws-s3/sync:     
           arguments: |
             --acl public-read
@@ -44,6 +45,7 @@ jobs:
            command: cd automatization-petbook && ./gradlew test
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.0
+  sonarCloud: extendaretail/sonarcloud@0.0.2
   aws-s3: circleci/aws-s3@1.0.15
 workflows:
   main:
