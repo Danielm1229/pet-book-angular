@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Run unit test
           command: npm run test-ci
-      - sonarcloud/scan_with_npm
+      - sonarcloud/scan
       - aws-s3/sync:     
           arguments: |
             --acl public-read
@@ -43,14 +43,13 @@ jobs:
            name: Move to serenity and test
            command: cd automatization-petbook && ./gradlew test
 orbs:
-  sonarcloud: extendaretail/sonarcloud@0.0.1
+  sonarcloud: sonarsource/sonarcloud@1.0.0
   aws-s3: circleci/aws-s3@1.0.15
 workflows:
   main:
     jobs:
       - build:
           context: SonarCloud
-      - sonarcloud/check_quality_gate:
-          context: SonarCloud
+      - test: 
           requires:
             - build
