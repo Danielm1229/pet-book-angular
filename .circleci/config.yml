@@ -21,7 +21,8 @@ jobs:
       - run:
           name: Run unit test
           command: npm run test-ci
-      - sonarcloud/scan_with_npm
+      - sonarcloud/scan_with_npm:
+          main_branch: main
       - aws-s3/sync:     
           arguments: |
             --acl public-read
