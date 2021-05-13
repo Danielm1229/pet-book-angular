@@ -51,8 +51,8 @@ workflows:
   main:
     jobs:
       - build:
-          context: sonarcloud
+          context: SonarCloud
       - sonarCloud/check_quality_gate:
-          context: sonarcloud
+          context: SonarCloud
           requires:
             - build
