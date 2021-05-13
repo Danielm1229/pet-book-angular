@@ -21,9 +21,7 @@ jobs:
       - run:
           name: Run unit test
           command: npm run test-ci
-      - sonarcloud/run-scan:
-          project_key: Danielm1229_pet-book-angular
-          organization: danielm1229
+      - sonarcloud/scan
       - aws-s3/sync:     
           arguments: |
             --acl public-read
@@ -45,7 +43,7 @@ jobs:
            name: Move to serenity and test
            command: cd automatization-petbook && ./gradlew test
 orbs:
-  sonarcloud: ksmc/sonarcloud-dotnet@0.0.43
+  sonarcloud: sonarsource/sonarcloud@1.0.0
   aws-s3: circleci/aws-s3@1.0.15
 workflows:
   main:
