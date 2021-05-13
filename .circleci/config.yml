@@ -27,6 +27,9 @@ jobs:
           overwrite: true
           from: ~/pet_book/dist/pet-book
           to: 's3://pet-book-project-circleci'
+      - run:
+          name: Install Docker client
+          command: apk add docker-cli
       - checkout
       - run: |
          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
