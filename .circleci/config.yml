@@ -22,7 +22,7 @@ jobs:
           name: Run unit test
           no_output_timeout: 30m
           command: npm run test-ci
-      - sonarcloud/scan
+      - sonarCloud/scan_with_npm
       - aws-s3/sync:     
           arguments: |
             --acl public-read
@@ -46,11 +46,13 @@ jobs:
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   aws-s3: circleci/aws-s3@1.0.15
+  sonarCloud: extendaretail/sonarcloud@0.0.2
 workflows:
   main:
     jobs:
       - build:
-          context: SonarCloud
-      - test: 
+          context: sonarcloud
+      - sonarCloud/check_quality_gate:
+          context: sonarcloud
           requires:
             - build
