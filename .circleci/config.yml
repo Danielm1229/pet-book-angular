@@ -7,6 +7,8 @@ jobs:
     working_directory: ~/pet_book
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 19.03.13
       - run: 
           name: Install CLI
           command: npm install @angular/cli
@@ -30,7 +32,6 @@ jobs:
       - run:
           name: Install Docker client
           command: apk add docker-cli
-      - checkout
       - run: |
          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run: docker build -t danielmunozo/pet-book-ci:dockerfile .
